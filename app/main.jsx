@@ -4,12 +4,16 @@ import ReactDOM from 'react-dom';
 import { Chat } from '@progress/kendo-react-conversational-ui';
 class App extends React.Component {
     constructor(props) {
+      
         super(props);
         this.user = {
-            id: 1,
-            avatarUrl: "https://via.placeholder.com/24/008000/008000.png"
+            id: 1
         };
-        this.bot = { id: 0 };
+        this.bot = { 
+          id: 0,
+          avatarUrl: "https://via.placeholder.com/24/008000/008000.png"
+        };
+
         this.state = {
             messages: [
                 {
@@ -24,7 +28,7 @@ class App extends React.Component {
                         }
                     ],
                     timestamp: new Date(),
-                    text: "Hey Jeremy Gannaway, what's up dawg?"
+                    text: "Hi Alison! I'm Jessie, an AI-guide here to help you begin the process of preparing for your time off of work."
                 }
             ]
         };
@@ -62,7 +66,7 @@ class App extends React.Component {
                 <Chat user={this.user}
                     messages={this.state.messages}
                     onMessageSend={this.addNewMessage}
-                    placeholder={"Type a message..."}
+                    placeholder={"Type or ask me something"}
                     width={400}>
                 </Chat>
             </div>
