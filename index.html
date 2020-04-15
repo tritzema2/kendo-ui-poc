@@ -2,16 +2,17 @@
 <head>
     <link rel="stylesheet" href="https://unpkg.com/@progress/kendo-theme-bootstrap@latest/dist/all.css"></link>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="styles.css" type="text/css" rel="stylesheet" />
     <style>
         
-      body {
-          position: relative;
-      }
+      body { position: relative; }
 
       html,
       body {
           height: 100%;
+          background-color: #F7F9FB;
+          font-family: 'Open Sans', sans-serif;
       }
 
       my-app {
@@ -25,14 +26,21 @@
       }
 
       @keyframes k-loading-animation  {
-          0% {
-              transform: rotate(0deg);
-          }
-          100% {
-              transform: rotate(360deg);
-          }
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
       }
 
+      .unum-conversation-wrapper { 
+        height: 100%;
+      }
+
+      .unum-conversation-wrapper .k-chat { 
+        overflow-x: unset; overflow-y: unset; 
+        font-family: 'Open Sans', sans-serif;
+        height: 100%;
+      }
+
+      .k-message-box { box-shadow: 0 -3px 12px rgba(224,231,237,0.7); }
       .k-message-group:not(.k-alt)>.k-avatar { top: 2px; }
 
       .k-i-loading.k-example-loading {

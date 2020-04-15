@@ -24,7 +24,7 @@ class App extends React.Component {
                             value: 'Oh, really?'
                         }, {
                             type: 'reply',
-                            value: 'Thanks, but this is boring.'
+                            value: 'Reed is awesome'
                         }
                     ],
                     timestamp: new Date(),
@@ -62,7 +62,7 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
+            <div class="unum-conversation-wrapper">
                 <Chat user={this.user}
                     messages={this.state.messages}
                     onMessageSend={this.addNewMessage}
