@@ -6,7 +6,10 @@ import * as marked from 'marked';
 
 // An override of the message renderer to allow markdown and other content styling
 function MessageTemplate(props) {
+
     let message = props.item;
+    console.log(message);
+    
     let parser = marked.setOptions({});
     let parsedMessage = parser.parse(message.text);
     let htmlToinsert = { __html: parsedMessage };
@@ -15,6 +18,7 @@ function MessageTemplate(props) {
             <div dangerouslySetInnerHTML={htmlToinsert} />
         </div>
     );
+
 }
 
 class App extends React.Component {
@@ -78,6 +82,7 @@ class App extends React.Component {
         switch(responseText) {
 
           case 'i\'m planning to take time off':
+            botResponse.type = 'newCustomType';
             botResponse.text = '**Can you tell me why you\'re taking time off work?**\n\nJust start typing below and I\'ll help you find the right category.';
             botResponse.suggestedActions = [
                         {
