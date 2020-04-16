@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Chat } from '@progress/kendo-react-conversational-ui';
 import * as marked from 'marked';
 
+// An override of the message renderer to allow markdown and other content styling
 function MessageTemplate(props) {
     let message = props.item;
     let parser = marked.setOptions({});
@@ -26,7 +27,7 @@ class App extends React.Component {
         this.bot = { 
           id: 0,
           avatarUrl: "https://hosted-machinelogic-io.s3.amazonaws.com/phoenix-poc/chat-unum-logo%402x.png"
-        };
+        }; 
 
         this.state = {
             messages: [
@@ -37,7 +38,6 @@ class App extends React.Component {
                 },
                 {
                   author: this.bot,
-                  timestamp: new Date(),
                   text: "Let’s get started. **What brings you here today?**",
                     suggestedActions: [
                         {
@@ -76,6 +76,7 @@ class App extends React.Component {
         botResponse.author = this.bot;
 
         switch(responseText) {
+
           case 'i\'m planning to take time off':
             botResponse.text = '**Can you tell me why you\'re taking time off work?**\n\nJust start typing below and I\'ll help you find the right category.';
             botResponse.suggestedActions = [
@@ -93,12 +94,25 @@ class App extends React.Component {
 
             break;
 
+          case 'maternity leave':
+          case 'paternity leave':
+          case 'surgery':
+            
+              botResponse.text = 'Great. In order to help you set your **' + responseText + '**, please call our claim setup hotline at:\n\n**(800) 555-1234**';
+          
+            
+            break;
+
+          case 'burgers':
+            
+            break;
+
           case 'burgers':
             
             break;
 
           default:
-            botResponse.text = this.countReplayLength(event.message.text);
+            botResponse.text = this.countReplayLength(event.message.text) ;
         }
 
         setTimeout(() => {
@@ -114,7 +128,7 @@ class App extends React.Component {
 
     countReplayLength = (question) => {
         let length = question.length;
-        let answer = question + " contains exactly " + length + " symbols.";
+        let answer = "**This is the default response.**\n\nYour message of \"" + question + "\" contains exactly " + length + " characters!";
         return answer;
     }
 
