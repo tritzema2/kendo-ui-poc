@@ -2,16 +2,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Chat } from '@progress/kendo-react-conversational-ui';
+import * as marked from 'marked';
+
+function MessageTemplate(props) {
+    let message = props.item;
+    let parser = marked.setOptions({});
+    let parsedMessage = parser.parse(message.text);
+    let htmlToinsert = { __html: parsedMessage };
+    return (
+        <div className="k-bubble">
+            <div dangerouslySetInnerHTML={htmlToinsert} />
+        </div>
+    );
+}
+
 class App extends React.Component {
     constructor(props) {
       
-        super(props);
+        super(props); 
         this.user = {
             id: 1
         };
         this.bot = { 
           id: 0,
-          avatarUrl: "https://via.placeholder.com/24/008000/008000.png"
+          avatarUrl: "https://hosted-machinelogic-io.s3.amazonaws.com/phoenix-poc/chat-unum-logo%402x.png"
         };
 
         this.state = {
@@ -21,7 +35,7 @@ class App extends React.Component {
                     suggestedActions: [
                         {
                             type: 'reply',
-                            value: 'Oh, really?'
+                            value: 'Jeremy Gannaway wears hats'
                         }, {
                             type: 'reply',
                             value: 'Reed is awesome'
