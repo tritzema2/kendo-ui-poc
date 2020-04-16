@@ -93,7 +93,6 @@ class App extends React.Component {
         switch(responseText) {
 
           case 'i\'m planning to take time off':
-            botResponse.type = 'newCustomType';
             botResponse.text = '**Can you tell me why you\'re taking time off work?**\n\nJust start typing below and I\'ll help you find the right category.';
             botResponse.suggestedActions = [
                         {
@@ -113,18 +112,29 @@ class App extends React.Component {
           case 'maternity leave':
           case 'paternity leave':
           case 'surgery':
-            
               botResponse.text = 'Great. In order to help you set your **' + responseText + '**, please call our claim setup hotline at:\n\n**(800) 555-1234**';
           
             
             break;
 
-          case 'burgers':
+          case 'custom timeline object':
             
             break;
 
-          case 'burgers':
-            
+          case 'various markdown examples':
+            let markdownExamples = '';
+
+            markdownExamples += '# Heading 1\n';
+            markdownExamples += '## Heading 2\n';
+            markdownExamples += '### Heading 3\n';
+
+            markdownExamples += '1. Here is\n2. an ordered list\n3. example for you\n';
+
+            markdownExamples += '\n[Link Example](/)\n';
+
+            markdownExamples += '\n![Grace is awesome](https://images.squarespace-cdn.com/content/v1/539b1cb7e4b0e992a7f83f4a/1499534766339-GI67JG9WBE6LGDZOANEO/ke17ZwdGBToddI8pDm48kOE8poCFVA3SVCnFcSJDvpV7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0ktJPZ5nzlpAQ9l-HYKRq6WtA6I_x4pFpYoHyCJt8m9Rfz8_hgRs6Rf3qd8DGa1PDg/Intropg.jpg)';
+
+            botResponse.text = markdownExamples;
             break;
 
           default:
