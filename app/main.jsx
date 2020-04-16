@@ -19,6 +19,12 @@ function MessageTemplate(props) {
     const messageType = message.type + '';
     switch(messageType) {
       case 'timeline':
+        return (
+          <div className="k-bubble timeline">
+            <img alt="timeline view" src="https://hosted-machinelogic-io.s3.amazonaws.com/phoenix-poc/timeline.png" />
+          </div>
+        );
+
 
         break;
 
@@ -112,14 +118,14 @@ class App extends React.Component {
           case 'maternity leave':
           case 'paternity leave':
           case 'surgery':
-              botResponse.text = 'Great. In order to help you set your **' + responseText + '**, please call our claim setup hotline at:\n\n**(800) 555-1234**';
-          
-            
-            break;
+            botResponse.text = 'Great. In order to help you set your **' + responseText + '**, please call our claim setup hotline at:\n\n**(800) 555-1234**';
+            
+            break;
 
           case 'custom timeline object':
-            
-            break;
+            botResponse.type = 'timeline';
+            botResponse.text = 'Based on your due date, this is an initial plan for your time off of work:';
+            break;
 
           case 'various markdown examples':
             let markdownExamples = '';
@@ -136,6 +142,10 @@ class App extends React.Component {
 
             botResponse.text = markdownExamples;
             break;
+
+          case 'start over':
+            location.href = location.href;
+            break;
 
           default:
             botResponse.text = this.countReplayLength(event.message.text) ;
