@@ -9,16 +9,27 @@ function MessageTemplate(props) {
 
     let message = props.item;
     console.log(message);
-    
+
+    // parse markdown language
     let parser = marked.setOptions({});
     let parsedMessage = parser.parse(message.text);
     let htmlToinsert = { __html: parsedMessage };
-    return (
-        <div className="k-bubble">
-            <div dangerouslySetInnerHTML={htmlToinsert} />
-        </div>
-    );
 
+
+    const messageType = message.type + '';
+    switch(messageType) {
+      case 'timeline':
+
+        break;
+
+      default:
+        return (
+            <div className="k-bubble">
+                <div dangerouslySetInnerHTML={htmlToinsert} />
+            </div>
+        );
+      break;
+    }
 }
 
 class App extends React.Component {
@@ -49,10 +60,10 @@ class App extends React.Component {
                             value: 'I\'m planning to take time off'
                         }, {
                             type: 'reply',
-                            value: 'I\'m already out of work'
+                            value: 'Custom Timeline Object'
                         }, {
                             type: 'reply',
-                            value: 'Review my benefits'
+                            value: 'Various Markdown Examples'
                         }, {
                             type: 'reply',
                             value: 'What are other options?'
