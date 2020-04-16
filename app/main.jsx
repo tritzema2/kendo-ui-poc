@@ -60,23 +60,56 @@ class App extends React.Component {
     }
 
     addNewMessage = (event) => {
-        let botResponce = Object.assign({}, event.message);
-        botResponce.text = this.countReplayLength(event.message.text);
-        botResponce.author = this.bot;
+        console.log(event);
+
+        const responseText = event.message.text.toLowerCase();
+
         this.setState((prevState) => ({
             messages: [
                 ...prevState.messages,
                 event.message
             ]
         }));
-        setTimeout(() => {
-            this.setState(prevState => ({
-                messages: [
-                    ...prevState.messages,
-                    botResponce
-                ]
-            }));
-        }, 1000);
+
+
+        let botResponse = Object.assign({}, event.message);
+        botResponse.author = this.bot;
+
+        switch(responseText) {
+          case 'i\'m planning to take time off':
+            botResponse.text = '**Can you tell me why you\'re taking time off work?**\n\nJust start typing below and I\'ll help you find the right category.';
+            botResponse.suggestedActions = [
+                        {
+                            type: 'reply',
+                            value: 'Maternity Leave'
+                        }, {
+                            type: 'reply',
+                            value: 'Paternity Leave'
+                        }, {
+                            type: 'reply',
+                            value: 'Surgery'
+                        }
+                    ];
+
+            break;
+
+          case 'burgers':
+            
+            break;
+
+          default:
+            botResponse.text = this.countReplayLength(event.message.text);
+        }
+
+        setTimeout(() => {
+            this.setState(prevState => ({
+                messages: [
+                    ...prevState.messages,
+                    botResponse
+                ]
+            }));
+        }, 1000);
+
     };
 
     countReplayLength = (question) => {
