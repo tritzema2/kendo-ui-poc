@@ -32,17 +32,28 @@ class App extends React.Component {
             messages: [
                 {
                     author: this.bot,
+                    timestamp: new Date(),
+                    text: "Hi Alison! I'm Jessie, an AI-guide here to help you begin the process of preparing for your time off of work.\n\nIf you ask me something I don't know, I'll connect you with one of my human coworkers. **You can also type a message below** at any time."
+                },
+                {
+                  author: this.bot,
+                  timestamp: new Date(),
+                  text: "Let’s get started. **What brings you here today?**",
                     suggestedActions: [
                         {
                             type: 'reply',
-                            value: 'Jeremy Gannaway wears hats'
+                            value: 'I\'m planning to take time off'
                         }, {
                             type: 'reply',
-                            value: 'Reed is awesome'
+                            value: 'I\'m already out of work'
+                        }, {
+                            type: 'reply',
+                            value: 'Review my benefits'
+                        }, {
+                            type: 'reply',
+                            value: 'What are other options?'
                         }
                     ],
-                    timestamp: new Date(),
-                    text: "Hi Alison! I'm Jessie, an AI-guide here to help you begin the process of preparing for your time off of work."
                 }
             ]
         };
@@ -76,11 +87,12 @@ class App extends React.Component {
 
     render() {
         return (
-            <div class="unum-conversation-wrapper">
+            <div className="unum-conversation-wrapper">
                 <Chat user={this.user}
                     messages={this.state.messages}
                     onMessageSend={this.addNewMessage}
                     placeholder={"Type or ask me something"}
+                    messageTemplate={MessageTemplate}
                     width={400}>
                 </Chat>
             </div>

@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="https://unpkg.com/@progress/kendo-theme-bootstrap@latest/dist/all.css"></link>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link href="styles.css" type="text/css" rel="stylesheet" />
+
     <style>
         
       body { position: relative; }
@@ -49,23 +49,32 @@
         font-size: 16px;
         line-height: 24px;
         color: #7A7A7A;
+        margin-bottom: 10px;
       }
       .k-chat .k-alt .k-bubble{
         background-color: #0088BD;
         border-radius: 100px 100px 0px 100px !important;
         padding: 20px 25px;
       }
+      .k-chat .k-bubble p:last-child {
+        margin-bottom: 0;
+      }
 
+      .k-quick-replies {
+        width: 77%;
+        margin-left: auto;
+        margin-right: auto;
+      }
       .k-quick-replies .k-quick-reply {
         color: #0088BD;
-        border-color: #0088BD;
+        border: solid 2px #0088BD;
         background: #fff;
         padding: 15px;
         border-radius: 10px;
         display: block;
         text-align: center;
+        margin-bottom: 7px
       }
-
       .k-quick-replies .k-quick-reply:hover {
         background: #0088BD;
       }
@@ -75,6 +84,7 @@
       .k-message-group:not(.k-alt)>.k-avatar { top: 2px; }
       .k-chat .k-message-group { max-width: 90%; }
       .k-chat .k-message-list-content { padding: 20px; }
+      .k-message-box .k-button { color: #AEC7D8; }
 
       .k-i-loading.k-example-loading {
           font-size: 64px;
