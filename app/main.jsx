@@ -16,6 +16,7 @@ function MessageTemplate(props) {
   switch (messageType) {
     case "timeline":
 
+
       let thisPlanID = '123';
       let cssToApply = 'k-bubble timeline';
       let deletedPlans = JSON.parse(sessionStorage.getItem("deletedPlans"));
@@ -106,8 +107,6 @@ class App extends React.Component {
         }
       ]
     };
-
-    sessionStorage.setItem("deletedPlans", '');
   }
 
   addNewMessage = event => {
