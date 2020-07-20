@@ -6,7 +6,6 @@ import * as marked from "marked";
 // An override of the message renderer to allow markdown and other content styling
 function MessageTemplate(props) {
   let message = props.item;
-  console.log(message);
 
   // parse markdown language
   let parser = marked.setOptions({});
@@ -16,8 +15,19 @@ function MessageTemplate(props) {
   const messageType = message.type + "";
   switch (messageType) {
     case "timeline":
+
+      let thisPlanID = '123';
+      let cssToApply = 'k-bubble timeline';
+      let deletedPlans = JSON.parse(sessionStorage.getItem("deletedPlans"));
+      if( (deletedPlans) && (deletedPlans.length >0)) {
+        for(var i = 0; i<deletedPlans.length; i++){
+          if (thisPlanID == deletedPlans[i]) {
+            cssToApply = 'k-bubble timeline show-as-deleted';
+          }
+        }
+      }
       return (
-        <div className="k-bubble timeline" data-plan-id="123">
+        <div className={cssToApply} data-plan-id="123">
           <img height="600" width="auto"
             alt="timeline view"
             src="https://hosted-machinelogic-io.s3.amazonaws.com/phoenix-poc/timeline.png"
@@ -96,11 +106,11 @@ class App extends React.Component {
         }
       ]
     };
+
+    sessionStorage.setItem("deletedPlans", '');
   }
 
   addNewMessage = event => {
-    console.log(event);
-
     const responseText = event.message.text.toLowerCase();
 
     this.setState(prevState => ({
@@ -111,6 +121,13 @@ class App extends React.Component {
     botResponse.author = this.bot;
 
     switch (responseText) {
+
+      case "delete this plan":
+        let deletedPlanArray = [];
+        deletedPlanArray.push('123');
+        sessionStorage.setItem("deletedPlans", JSON.stringify(deletedPlanArray));
+        botResponse.text = "OK, plan deleted.";
+        break;
 
       case "site intercept demo":
         botResponse.type = "site-intercept";
@@ -151,7 +168,18 @@ class App extends React.Component {
         botResponse.type = "timeline";
         botResponse.text =
           "Based on your due date, this is an initial plan for your time off of work:";
+        botResponse.suggestedActions = [
+          {
+            type: "reply",
+            value: "Submit my Plan"
+          },
+          {
+            type: "reply",
+            value: "Delete this Plan"
+          }
+        ];             
         break;
+     
 
       case "various markdown examples":
         let markdownExamples = "";
