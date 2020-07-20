@@ -17,11 +17,12 @@ function MessageTemplate(props) {
   switch (messageType) {
     case "timeline":
       return (
-        <div className="k-bubble timeline">
-          <img
+        <div className="k-bubble timeline" data-plan-id="123">
+          <img height="600" width="auto"
             alt="timeline view"
             src="https://hosted-machinelogic-io.s3.amazonaws.com/phoenix-poc/timeline.png"
           />
+          <button className="timeline-button">Edit plan 123</button>
         </div>
       );
 
